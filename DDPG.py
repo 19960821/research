@@ -294,9 +294,9 @@ class DDPG:
                 UA = (1-np.random.rand())*user_ability
                 action_R = np.concatenate([UB, UA, UP])
                 # -----------------平均--------------
-                UB_A = 0.7*user_bandwidth
-                UP_A = 0.7*user_power
-                UA_A = 0.7*user_ability
+                UB_A = 0.8*user_bandwidth
+                UP_A = 0.8*user_power
+                UA_A = 0.8*user_ability
                 action_A = np.concatenate([UB_A, UA_A, UP_A])
                 # -----------------DQN--------------
                 # action_DQN = 
@@ -382,10 +382,10 @@ class DDPG:
 
         plt.plot([i+1 for i in range(max_episodes)], ep_opt, label = "DDPG")
         # ---------随机-----------
-        plt.plot([i+1 for i in range(max_episodes)], ep_opt_R, label = "random")
-        plt.plot([i+1 for i in range(max_episodes)], ep_opt_A, label = "fixed")
+        plt.plot([i+1 for i in range(max_episodes)], ep_opt_R, label = "RAM")
+        plt.plot([i+1 for i in range(max_episodes)], ep_opt_A, label = "FAM")
         plt.xlabel("episode")
-        plt.ylabel("opt")
+        plt.ylabel("reward")
         plt.legend()
         plt.show()
 
@@ -402,7 +402,7 @@ class DDPG:
         plt.plot([i+1 for i in range(max_episodes)], ep_min_objective_R, label = "random")
         plt.plot([i+1 for i in range(max_episodes)], ep_min_objective_A, label = "fixed")
         plt.xlabel("episode")
-        plt.ylabel("ep_min_objective")
+        plt.ylabel("objective")
         plt.legend()
         plt.show()
 
